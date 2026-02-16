@@ -1,1 +1,28 @@
 .env
+/.idea/.author_contents_storage_db-shm
+/.idea/.author_contents_storage_db
+/.idea/.author_contents_storage_db-wal
+/.idea/.gitignore
+/course-info.yaml
+/course-remote-info.yaml
+/.idea/externalDependencies.xml
+/The Stock Analyzer (Responses API)/lesson-info.yaml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/The Stock Analyzer (Responses API)/Data analysis/task.html
+/The Stock Analyzer (Responses API)/Data retrieval/task.html
+/The Stock Analyzer (Responses API)/Data visualization/task.html
+/The Stock Analyzer (Responses API)/Using technical indicators/task.html
+/The Stock Analyzer (Responses API)/Data analysis/task-info.yaml
+/The Stock Analyzer (Responses API)/Data retrieval/task-info.yaml
+/The Stock Analyzer (Responses API)/Data visualization/task-info.yaml
+/The Stock Analyzer (Responses API)/Using technical indicators/task-info.yaml
+/The Stock Analyzer (Responses API)/Data analysis/task-remote-info.yaml
+/The Stock Analyzer (Responses API)/Data retrieval/task-remote-info.yaml
+/The Stock Analyzer (Responses API)/Data visualization/task-remote-info.yaml
+/The Stock Analyzer (Responses API)/Using technical indicators/task-remote-info.yaml
+/The Stock Analyzer (Responses API)/task/test/*
+/The Stock Analyzer (Responses API)/task/tests.py
+/.idea/The Stock Analyzer (Responses API).iml
+/.idea/vcs.xml

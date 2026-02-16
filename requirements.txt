@@ -2,3 +2,4 @@ python-dotenv
 https://github.com/hyperskill/hs-test-python/archive/release.tar.gz
 openai
 requests
+mcp
