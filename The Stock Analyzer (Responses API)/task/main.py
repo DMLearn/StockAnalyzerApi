@@ -33,17 +33,28 @@ def call_openai():
         client = OpenAI(api_key=openai_api_key)
 
         # User prompt
-        user_prompt = """## Stock Summary: AAPL
+        user_prompt = """## Stock Analysis: AAPL
 
 ### 1. Data Retrieval
-Retrieve daily data for **'AAPL'** (last 3 days):
-`TOOL_CALL(tool_name="TIME_SERIES_DAILY", arguments={"symbol": "AAPL", "outputsize": "compact"})`
+**Price data:**
+`TOOL_CALL(tool_name="TIME_SERIES_MONTHLY", arguments={"symbol": "AAPL", "outputsize": "compact"})`
 
-### 2. Summary
-Provide a brief overview:
-- Price movement (up/down/flat)
-- Day-over-day % change
-- Notable volume changes"""
+**Technical indicators:**
+- `TOOL_CALL(tool_name="RSI", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 14, "series_type": "close"})`
+- `TOOL_CALL(tool_name="SMA", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 20, "series_type": "close"})`
+- `TOOL_CALL(tool_name="SMA", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 50, "series_type": "close"})`
+- `TOOL_CALL(tool_name="BBANDS", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 20, "series_type": "close"})`
+
+### 2. Analysis
+Provide investor-friendly assessment of:
+- **Trend & momentum**: RSI status, price vs moving averages
+- **Signals**: Oversold/overbought, MA crossovers, Bollinger Band position
+- **Risk level**: Low/Moderate/High based on volatility
+
+### 3. Recommendation
+Clear **buy/hold/sell** with brief reasoning (2-3 sentences).
+
+*Use plain language — no unexplained jargon.*"""
 
         alphavantage_mcp_server = os.getenv("SERVER_URL")
         print("\n" + "="*80)
@@ -58,7 +69,7 @@ Provide a brief overview:
         # Call OpenAI Responses API with MCP server
 
         response = client.responses.create(
-            model="gpt-4",
+            model="gpt-5-mini",
             tools=[
                 {
                     "type": "mcp",
