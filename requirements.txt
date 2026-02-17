@@ -1,5 +1,6 @@
-python-dotenv
-https://github.com/hyperskill/hs-test-python/archive/release.tar.gz
-openai
-requests
-mcp
+# Core dependencies
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Optional: for additional HTTP requests if needed
+requests>=2.31.0
