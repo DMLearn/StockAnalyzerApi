@@ -33,28 +33,9 @@ def call_openai():
         client = OpenAI(api_key=openai_api_key)
 
         # User prompt
-        user_prompt = """## Stock Analysis: AAPL
-
-### 1. Data Retrieval
-**Price data:**
-`TOOL_CALL(tool_name="TIME_SERIES_MONTHLY", arguments={"symbol": "AAPL", "outputsize": "compact"})`
-
-**Technical indicators:**
-- `TOOL_CALL(tool_name="RSI", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 14, "series_type": "close"})`
-- `TOOL_CALL(tool_name="SMA", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 20, "series_type": "close"})`
-- `TOOL_CALL(tool_name="SMA", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 50, "series_type": "close"})`
-- `TOOL_CALL(tool_name="BBANDS", arguments={"symbol": "AAPL", "interval": "monthly", "time_period": 20, "series_type": "close"})`
-
-### 2. Analysis
-Provide investor-friendly assessment of:
-- **Trend & momentum**: RSI status, price vs moving averages
-- **Signals**: Oversold/overbought, MA crossovers, Bollinger Band position
-- **Risk level**: Low/Moderate/High based on volatility
-
-### 3. Recommendation
-Clear **buy/hold/sell** with brief reasoning (2-3 sentences).
-
-*Use plain language — no unexplained jargon.*"""
+        user_prompt = """Bitte analysiere die Apple‑Aktie (AAPL) der letzten 3 Monate wobei du als Zeitfenster jeweils die Monatsdaten
+        nutzen sollst und nicht die Tageskurse. 
+        Als Datenquelle für die Aktienkurse nutze AlphaVantage und zur analyse das Tool Code_interpreter."""
 
         alphavantage_mcp_server = os.getenv("SERVER_URL")
         print("\n" + "="*80)
@@ -78,6 +59,10 @@ Clear **buy/hold/sell** with brief reasoning (2-3 sentences).
                     "server_url": alphavantage_mcp_server,
                     "authorization": alphavantage_api_key,
                     "require_approval": "never",
+                },
+                {
+                    "type": "code_interpreter",
+                    "container": {"type": "auto", "memory_limit": "4g"}
                 }
             ],
             input=user_prompt,
@@ -94,6 +79,7 @@ Clear **buy/hold/sell** with brief reasoning (2-3 sentences).
         print("="*80)
         print(response.output)
         print("="*80 + "\n")
+        print(response.output_text)
 
     except AuthenticationError as e:
         print("\n❌ AUTHENTIFIZIERUNGSFEHLER:")
